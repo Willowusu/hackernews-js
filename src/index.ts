@@ -135,7 +135,7 @@ export class HNClient {
       | "job",
     page: number,
     pageSize: number
-  ): Promise<{ ids: number[]; items: (BaseItem | null)[] }> {
+  ): Promise<{ ids: number[]; items: (BaseItem | null)[]; total: number }> {
     const map: Record<string, () => Promise<number[]>> = {
       top: () => this.getTopStories(),
       new: () => this.getNewStories(),
@@ -148,7 +148,7 @@ export class HNClient {
     const start = (page - 1) * pageSize;
     const slice = ids.slice(start, start + pageSize);
     const items = await Promise.all(slice.map((id) => this.getItem(id)));
-    return { ids: slice, items };
+    return { ids: slice, items, total: ids.length };
   }
 
   // ---------------------------
