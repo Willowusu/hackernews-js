@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["src/index.ts", "src/lru.ts", "src/utils.ts"],
+  "out": "docs",
+  "includeVersion": true,
+  "tsconfig": "tsconfig.json",
+  "hideGenerator": true
+}

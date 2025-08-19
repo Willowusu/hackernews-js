@@ -1,0 +1,47 @@
+{
+    "name": "hackernews-js",
+    "version": "0.1.0",
+    "description": "Tiny, fast Hacker News API wrapper with batching, hydration, and updates.",
+    "license": "MIT",
+    "author": "William Owusu <williamowusu1998@gmail.com>",
+    "repository": "github:willowusu/hackernews-js",
+    "keywords": ["hackernews", "api", "wrapper", "typescript"],
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./lru": {
+            "types": "./dist/lru.d.ts",
+            "import": "./dist/lru.js",
+            "require": "./dist/lru.cjs"
+        },
+        "./utils": {
+            "types": "./dist/utils.d.ts",
+            "import": "./dist/utils.js",
+            "require": "./dist/utils.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "scripts": {
+        "build": "tsc && esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js && esbuild src/index.ts --bundle --format=cjs --outfile=dist/index.cjs && esbuild src/lru.ts --bundle --format=esm --outfile=dist/lru.js && esbuild src/lru.ts --bundle --format=cjs --outfile=dist/lru.cjs && esbuild src/utils.ts --bundle --format=esm --outfile=dist/utils.js && esbuild src/utils.ts --bundle --format=cjs --outfile=dist/utils.cjs",
+        "test": "vitest run",
+        "dev": "vitest",
+        "docs": "typedoc"
+    },
+    "devDependencies": {
+          "typedoc": "^0.26.0",
+        "esbuild": "^0.23.0",
+        "typescript": "^5.4.0",
+        "vitest": "^1.6.0",
+        "linkedom": "^0.16.6"
+    }
+}
