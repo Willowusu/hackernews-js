@@ -1,6 +1,6 @@
 {
     "name": "hackernews-js",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Tiny, fast Hacker News API wrapper with batching, hydration, and updates.",
     "license": "MIT",
     "author": "William Owusu <williamowusu1998@gmail.com>",
