@@ -54,14 +54,44 @@ console.log(user.karma);
 ```
 
 ## Note:
-In your React UI, when you create the client, explicitly tell it to use the browser’s window.fetch:
-```
+---
+
+## Fetch Environments
+
+This library works in **both frontend and backend** environments, but you may need to configure `fetch` depending on where you run it:
+
+### Browser / React / Vue / Svelte
+Explicitly bind the browser’s `window.fetch`:
+```ts
 import { HackerNewsClient } from "hackernews-js";
 
-const client = new HackerNewsClient({ fetch: window.fetch.bind(window) });
+const client = new HackerNewsClient({
+  fetch: window.fetch.bind(window),
+});
+````
+
+### Node.js (v18+)
+
+Node 18+ ships with a global `fetch`, so no extra setup is needed:
+
+```ts
+import { HackerNewsClient } from "hackernews-js";
+
+const client = new HackerNewsClient();
 ```
 
+### Older Node (<18)
+
+You’ll need to bring your own fetch implementation (e.g. [`undici`](https://github.com/nodejs/undici)):
+
+```ts
+import { fetch } from "undici";
+import { HackerNewsClient } from "hackernews-js";
+
+const client = new HackerNewsClient({ fetch });
+```
 ---
+
 
 ## 📚 API
 
