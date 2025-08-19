@@ -24,12 +24,19 @@ export class HNClient {
 
   constructor(opts: ClientOptions = {}) {
     this.baseUrl = opts.baseUrl || DEFAULT_BASE;
-    this.fetchImpl = opts.fetch || globalThis.fetch;
+
+    const defaultFetch =
+      typeof window !== "undefined" && typeof window.fetch === "function"
+        ? window.fetch.bind(window)
+        : globalThis.fetch;
+
+    this.fetchImpl = opts.fetch || defaultFetch;
     this.timeoutMs = opts.timeoutMs ?? 10_000;
     this.concurrency = opts.concurrency ?? 5;
     this.cache = opts.cache;
     this.userAgent = opts.userAgent;
   }
+
 
   private async request<T>(path: string): Promise<T> {
     const url = `${this.baseUrl}/${path}`;
