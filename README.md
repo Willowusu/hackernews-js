@@ -53,6 +53,14 @@ const user = await hn.getUser("pg");
 console.log(user.karma);
 ```
 
+## Note:
+In your React UI, when you create the client, explicitly tell it to use the browser’s window.fetch:
+```
+import { HackerNewsClient } from "hackernews-js";
+
+const client = new HackerNewsClient({ fetch: window.fetch.bind(window) });
+```
+
 ---
 
 ## 📚 API
